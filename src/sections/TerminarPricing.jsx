@@ -45,112 +45,13 @@ export default function TerminarPricing() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 pt-32">
-        <div className="text-center mb-20">
-          <div className="relative inline-block">
-            <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Revolúcia v
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                rezervačnom systéme
-              </span>
-            </h1>
-            
-            <div className="relative">
-              {/* Floating Elements */}
-              <div className={`absolute -top-8 -left-8 bg-gradient-to-br ${colors.primary.gradient} rounded-2xl p-3 shadow-2xl animate-float`}>
-                <Users className="w-6 h-6 text-white" />
-              </div>
-              <div className={`absolute -bottom-8 -right-8 bg-gradient-to-br ${colors.secondary.gradient} rounded-2xl p-3 shadow-2xl animate-float`} 
-                style={{ animationDelay: '1s' }}>
-                <Clock className="w-6 h-6 text-white" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Feature Cards */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8 pb-32">
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Card 1 */}
-          <div 
-            className="group relative backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-opacity-50 transition-all duration-500 overflow-hidden"
-            style={{ backgroundColor: colors.background.card }}
-            onMouseEnter={() => setHoveredFeature(0)}
-            onMouseLeave={() => setHoveredFeature(null)}>
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{ background: `linear-gradient(to bottom right, ${colors.primary.main}20, transparent)` }}></div>
-            <div className="relative">
-              <div className={`w-16 h-16 bg-gradient-to-br ${colors.primary.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
-                <Zap className="w-8 h-8 text-white" />
-              </div>
-              <div className="text-sm font-semibold mb-2" style={{ color: colors.primary.light }}>ĽAHKÁ INTEGRÁCIA</div>
-              <h3 className="text-3xl font-bold text-white mb-4">
-                Pracujte efektívnejšie
-              </h3>
-              <p className="text-gray-300 mb-6">
-                S ReserveX sú únavné úlohy minulosťou. Automatizácia a inteligentné procesy posúvajú vašu produktivitu na novú úroveň.
-              </p>
-              <button className="group/btn flex items-center gap-2 font-semibold hover:gap-3 transition-all"
-                style={{ color: colors.primary.light }}>
-                <Zap className="w-5 h-5" />
-                <span>POZRIEŤ DEMO</span>
-                <ChevronRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          </div>
 
-          {/* Card 2 */}
-          <div 
-            className="group relative backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-opacity-50 transition-all duration-500 overflow-hidden"
-            style={{ backgroundColor: colors.background.card }}
-            onMouseEnter={() => setHoveredFeature(1)}
-            onMouseLeave={() => setHoveredFeature(null)}>
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{ background: `linear-gradient(to bottom right, ${colors.secondary.main}20, transparent)` }}></div>
-            <div className="relative">
-              <div className={`w-16 h-16 bg-gradient-to-br ${colors.secondary.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <div className="text-sm font-semibold mb-2" style={{ color: colors.secondary.light }}>BEZPEČNOSŤ & DÔVERA</div>
-              <h3 className="text-3xl font-bold text-white mb-4">
-                Spoľahnite sa na nás
-              </h3>
-              <p className="text-gray-300 mb-6">
-                Bezpečnosť vašich dát je naša priorita. Moderné šifrovanie a robustné bezpečnostné protokoly chránia vaše informácie.
-              </p>
-              <button className="group/btn flex items-center gap-2 font-semibold hover:gap-3 transition-all"
-                style={{ color: colors.secondary.light }}>
-                <Shield className="w-5 h-5" />
-                <span>ČÍTAŤ DOKUMENTÁCIU</span>
-                <ChevronRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          </div>
-        </div>
+     
+     
 
-        {/* Bottom Feature Grid */}
-        <div className="grid md:grid-cols-4 gap-6 mt-6">
-          {[
-            { icon: <Zap className="w-6 h-6" />, title: 'Automatizované', subtitle: 'Notifikácie', gradient: colors.primary.gradient },
-            { icon: <Users className="w-6 h-6" />, title: 'Spolupráca', subtitle: 'Tímová práca', gradient: colors.secondary.gradient },
-            { icon: <TrendingUp className="w-6 h-6" />, title: 'Ultra rýchle', subtitle: 'Cloud úložisko', gradient: colors.primary.gradient },
-            { icon: <Smartphone className="w-6 h-6" />, title: '24/7 podpora', subtitle: 'Pre zákazníkov', gradient: colors.secondary.gradient }
-          ].map((feature, idx) => (
-            <div 
-              key={idx}
-              className="group backdrop-blur-xl rounded-xl p-6 border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer hover:scale-105"
-              style={{ backgroundColor: colors.background.card }}>
-              <div className={`w-12 h-12 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center mb-4 text-white group-hover:scale-110 transition-transform shadow-lg`}>
-                {feature.icon}
-              </div>
-              <div className="text-sm text-gray-400 mb-1">{feature.title}</div>
-              <div className="text-white font-semibold">{feature.subtitle}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+
+
 
       {/* Pricing Section */}
       <div className="relative z-10 max-w-7xl mx-auto px-8 pb-32">
