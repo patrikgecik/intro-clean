@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, Users, Clock, TrendingUp, Shield, Zap, Globe, Smartphone, ChevronRight, CheckCircle2, Star } from 'lucide-react';
+import logoTerminar from '../assets/logo_terminar.png';
 
 // FARBY - Ľahko editovateľné
 const colors = {
@@ -36,9 +37,10 @@ const colors = {
 export default function ReservationSystemHero() {
   const [activeTab, setActiveTab] = useState(0);
   const [hoveredFeature, setHoveredFeature] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden px-4 md:px-8">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-96 h-96 rounded-full blur-3xl animate-pulse" style={{ backgroundColor: `${colors.primary.main}33` }}></div>
@@ -46,28 +48,53 @@ export default function ReservationSystemHero() {
         <div className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full blur-3xl animate-pulse" style={{ backgroundColor: `${colors.accent.main}33`, animationDelay: '2s' }}></div>
       </div>
 
-      {/* Navigation */}
-      <nav className="relative z-50 flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
+      {/* In-section Navigation (chosen header) */}
+      <nav className="relative z-50 flex items-center justify-between px-4 md:px-8 py-5 max-w-7xl mx-auto">
         <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 bg-gradient-to-br ${colors.primary.gradient} rounded-lg flex items-center justify-center shadow-lg`}>
-            <Calendar className="w-6 h-6 text-white" />
-          </div>
-          <span className="text-2xl font-bold text-white">ReserveX</span>
+          <img src={logoTerminar} alt="Terminar logo" className="w-16 h-16 object-contain drop-shadow-xl" />
         </div>
-        <div className="flex items-center gap-8">
-          <a href="#" className="text-gray-300 hover:text-white transition-colors">Funkcie</a>
-          <a href="#" className="text-gray-300 hover:text-white transition-colors">Cenník</a>
-          <a href="#" className="text-gray-300 hover:text-white transition-colors">FAQ</a>
-          <button className={`px-6 py-2 bg-gradient-to-r ${colors.primary.gradient} text-white rounded-lg font-semibold hover:shadow-lg transition-all`}
+        <div className="hidden md:flex items-center gap-8">
+          <a href="#customizer" className="text-gray-300 hover:text-white transition-colors">Customizer</a>
+          <a href="#giftcards" className="text-gray-300 hover:text-white transition-colors">Poukazky</a>
+          <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">Cennik</a>
+          <a href="#reservations" className="text-gray-300 hover:text-white transition-colors">Rezervacie</a>
+          <a
+            href="#demo-tablet"
+            className={`px-6 py-2 bg-gradient-to-r ${colors.primary.gradient} text-white rounded-lg font-semibold hover:shadow-lg transition-all`}
             style={{ boxShadow: `0 4px 20px ${colors.primary.main}40` }}>
-            Vyskúšať
+            Vyskusat
+          </a>
+        </div>
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsMenuOpen((v) => !v)}
+            className={`px-4 py-2 bg-gradient-to-r ${colors.primary.gradient} text-white rounded-lg font-semibold hover:shadow-lg transition-all`}
+            style={{ boxShadow: `0 4px 20px ${colors.primary.main}40` }}>
+            {isMenuOpen ? 'Zavriet' : 'Menu'}
           </button>
         </div>
       </nav>
-
+      {isMenuOpen && (
+        <div className="md:hidden relative z-40 max-w-7xl mx-auto px-4 pb-4">
+          <div className="rounded-2xl bg-slate-900/80 border border-white/10 shadow-2xl p-4 space-y-3">
+            <a href="#customizer" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Customizer</a>
+            <a href="#giftcards" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Poukazky</a>
+            <a href="#pricing" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Cennik</a>
+            <a href="#reservations" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Rezervacie</a>
+            <a
+              href="#demo-tablet"
+              className={`w-full py-3 bg-gradient-to-r ${colors.primary.gradient} text-white rounded-lg font-semibold hover:shadow-lg transition-all text-center`}
+              style={{ boxShadow: `0 4px 20px ${colors.primary.main}40` }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Vyskusat
+            </a>
+          </div>
+        </div>
+      )}
       {/* Hero Section */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8 pt-20 pb-32">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-10 md:pt-16 pb-20 md:pb-32">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-8">
             <div className="inline-block">
@@ -90,26 +117,25 @@ export default function ReservationSystemHero() {
             </h1>
 
             <p className="text-xl text-gray-300 leading-relaxed">
-              Navrhli sme ReserveX ako systém, ktorý je ľahko použiteľný, rýchly na naučenie a prekvapivo výkonný.
+              Navrhli sme Terminar ako systém, ktorý je ľahko použiteľný, rýchly na naučenie a prekvapivo výkonný.
             </p>
 
             <div className="flex gap-4">
-              <button className={`group px-8 py-4 bg-gradient-to-r ${colors.primary.gradient} text-white rounded-xl font-semibold hover:shadow-2xl transition-all flex items-center gap-2`}
-                style={{ boxShadow: `0 10px 40px ${colors.primary.main}40` }}>
+              <a
+                href="#demo-tablet"
+                className={`group px-8 py-4 bg-gradient-to-r ${colors.primary.gradient} text-white rounded-xl font-semibold hover:shadow-2xl transition-all flex items-center gap-2`}
+                style={{ boxShadow: `0 10px 40px ${colors.primary.main}40` }}
+              >
                 <span>VYSKÚŠAŤ TERAZ</span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 transition-all">
-                Pozrieť Demo
-              </button>
+              </a>
+              <a href="#demo-tablet" className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 transition-all">
+                Pozriet Demo
+              </a>
             </div>
 
             {/* Stats */}
             <div className="flex gap-8 pt-8">
-              <div>
-                <div className="text-3xl font-bold text-white">10k+</div>
-                <div className="text-sm text-gray-400">Spokojných klientov</div>
-              </div>
               <div>
                 <div className="text-3xl font-bold text-white">99.9%</div>
                 <div className="text-sm text-gray-400">Dostupnosť</div>
@@ -123,8 +149,8 @@ export default function ReservationSystemHero() {
             </div>
           </div>
 
-          {/* Right - 3D iPad Mockup with Full Calendar */}
-          <div className="relative">
+          {/* Right - 3D iPad Mockup with Full Calendar (desktop only for responsiveness) */}
+          <div className="relative hidden lg:block">
             <div className="relative transform hover:scale-105 transition-all duration-700" style={{ perspective: '1500px' }}>
               {/* Glowing Effect */}
               <div className="absolute -inset-8 rounded-[4rem] blur-3xl" 
@@ -334,6 +360,7 @@ export default function ReservationSystemHero() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -357,7 +384,7 @@ export default function ReservationSystemHero() {
                 Pracujte efektívnejšie
               </h3>
               <p className="text-gray-300 mb-6">
-                S ReserveX sú únavné úlohy minulosťou. Automatizácia a inteligentné procesy posúvajú vašu produktivitu na novú úroveň.
+                S Terminarom sú únavné úlohy minulosťou. Automatizácia a inteligentné procesy posúvajú vašu produktivitu na novú úroveň.
               </p>
               <button className="group/btn flex items-center gap-2 font-semibold hover:gap-3 transition-all"
                 style={{ color: colors.primary.light }}>
@@ -419,7 +446,7 @@ export default function ReservationSystemHero() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
@@ -431,3 +458,6 @@ export default function ReservationSystemHero() {
     </div>
   );
 }
+
+
+

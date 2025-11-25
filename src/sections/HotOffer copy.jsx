@@ -212,21 +212,21 @@ export default function SpecialOfferBanner() {
               <Clock className="w-6 h-6" style={{ color: colors.secondary.light }} />
               <div className="text-left">
                 <div className="text-sm text-gray-400">Ponuka končí</div>
-                <div className="text-xl font-bold text-white">31. decembra 2024</div>
+                <div className="text-xl font-bold text-white">31. novembra 2024</div>
               </div>
             </div>
 
             {/* Trust Indicators */}
 {/* Countdown Section */}
 <div className="mt-12 pt-8 border-t" style={{ borderColor: `${colors.primary.main}30` }}>
-  <CountdownTimer targetDate={new Date('2025-11-20T23:59:59')} colors={colors} />
+  <CountdownTimer targetDate={new Date('2024-11-30T23:59:59')} colors={colors} />
 </div>
 
           </div>
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }

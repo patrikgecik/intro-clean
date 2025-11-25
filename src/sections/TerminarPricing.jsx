@@ -38,7 +38,7 @@ export default function TerminarPricing() {
   const [hoveredFeature, setHoveredFeature] = useState(null);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+    <section id="pricing" className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
@@ -291,7 +291,7 @@ export default function TerminarPricing() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
@@ -300,6 +300,6 @@ export default function TerminarPricing() {
           animation: float 3s ease-in-out infinite;
         }
       `}</style>
-    </div>
+    </section>
   );
 }

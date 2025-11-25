@@ -28,16 +28,48 @@ const colors = {
   }
 };
 
+const getNextNovemberEnd = () => {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const targetThisYear = new Date(Date.UTC(currentYear, 10, 30, 23, 59, 59)); // month 10 = November
+  if (targetThisYear.getTime() > now.getTime()) return targetThisYear;
+  return new Date(Date.UTC(currentYear + 1, 10, 30, 23, 59, 59));
+};
+
 export default function SpecialOfferBanner() {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const targetDate = getNextNovemberEnd();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email) {
+      const timestamp = new Date().toISOString();
+      const payload = [
+        {
+          email,
+          createdAt: timestamp
+        }
+      ];
+
+      const triggerDownload = (blob, filename) => {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        link.click();
+        URL.revokeObjectURL(url);
+      };
+
+      // JSON výstup (pripravené na import)
+      const jsonBlob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      triggerDownload(jsonBlob, 'zmluvy-emails.json');
+
+      // Jednoduchý TXT zápis pre zmluvy/log
+      const txtBlob = new Blob([`email=${email}; createdAt=${timestamp}\n`], { type: 'text/plain' });
+      triggerDownload(txtBlob, 'zmluvy-emails.txt');
+
       setIsSubmitted(true);
-      // Tu by ste poslali email na backend
-      console.log('Email submitted:', email);
       setTimeout(() => {
         setEmail('');
       }, 3000);
@@ -58,7 +90,7 @@ export default function SpecialOfferBanner() {
 
       {/* Main Banner */}
       <div className="relative z-10 max-w-6xl w-full">
-        <div className="backdrop-blur-2xl rounded-[3rem] p-12 md:p-16 border-2 shadow-2xl overflow-hidden"
+        <div className="backdrop-blur-2xl rounded-[3rem] p-10 md:p-12 border-2 shadow-2xl overflow-hidden"
           style={{ 
             backgroundColor: colors.background.cardHover,
             borderColor: colors.primary.main,
@@ -93,20 +125,18 @@ export default function SpecialOfferBanner() {
               }}>
               <Sparkles className="w-5 h-5" style={{ color: colors.primary.light }} />
               <span className="text-sm font-bold" style={{ color: colors.primary.light }}>
-                LIMITOVANÁ PONUKA - IBA 3 MESIACE
+                LIMITOVAN? PONUKA
               </span>
               <Sparkles className="w-5 h-5" style={{ color: colors.primary.light }} />
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Získajte <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">2v1</span>
-              <br />
-              na 3 mesiace
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+              2 mesiace za cenu 1
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Objednajte si systém teraz a získate <span className="font-bold" style={{ color: colors.primary.light }}>Darčekové poukážky</span> + <span className="font-bold" style={{ color: colors.primary.light }}>Online rezervácie</span> zadarmo po dobu 3 mesiacov!
+            <p className="text-base md:text-lg text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Platí na poukážkový Customizer. Aktivujte do konca novembra 2024 a získate +1 mesiac zdarma.
             </p>
 
             {/* Features Grid */}
@@ -191,7 +221,7 @@ export default function SpecialOfferBanner() {
             {/* Benefits Bar */}
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-sm">
               {[
-                { icon: <CheckCircle2 className="w-5 h-5" />, text: '3 mesiace zadarmo' },
+                { icon: <CheckCircle2 className="w-5 h-5" />, text: 'Okam?it? spustenie' },
                 { icon: <CheckCircle2 className="w-5 h-5" />, text: 'Bez viazanosti' },
                 { icon: <CheckCircle2 className="w-5 h-5" />, text: 'Zrušiteľné kedykoľvek' },
                 { icon: <CheckCircle2 className="w-5 h-5" />, text: 'Prioritná podpora' }
@@ -212,21 +242,21 @@ export default function SpecialOfferBanner() {
               <Clock className="w-6 h-6" style={{ color: colors.secondary.light }} />
               <div className="text-left">
                 <div className="text-sm text-gray-400">Ponuka končí</div>
-                <div className="text-xl font-bold text-white">31. decembra 2024</div>
+                <div className="text-xl font-bold text-white">30. novembra {targetDate.getUTCFullYear()}</div>
               </div>
             </div>
 
             {/* Trust Indicators */}
 {/* Countdown Section */}
 <div className="mt-12 pt-8 border-t" style={{ borderColor: `${colors.primary.main}30` }}>
-  <CountdownTimer targetDate={new Date('2025-11-20T23:59:59')} colors={colors} />
+  <CountdownTimer targetDate={targetDate} colors={colors} />
 </div>
 
           </div>
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
@@ -318,8 +348,10 @@ function CountdownTimer({ targetDate, colors }) {
         ))}
       </div>
       <div className="text-sm text-gray-500 mt-4">
-        Ponuka vyprší <span style={{ color: colors.primary.light }}>20. novembra 2025</span>
+        Ponuka vyprší <span style={{ color: colors.primary.light }}>30. novembra 2024</span>
       </div>
     </div>
   );
 }
+
+
