@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Calendar, Users, Clock, TrendingUp, Shield, Zap, Globe, Smartphone, ChevronRight, CheckCircle2, Star } from 'lucide-react';
 import logoTerminar from '../assets/logo_terminar.png';
 
@@ -40,7 +40,7 @@ export default function ReservationSystemHero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden px-4 md:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden px-4 sm:px-6 md:px-10">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-96 h-96 rounded-full blur-3xl animate-pulse" style={{ backgroundColor: `${colors.primary.main}33` }}></div>
@@ -51,13 +51,17 @@ export default function ReservationSystemHero() {
       {/* In-section Navigation (chosen header) */}
       <nav className="relative z-50 flex items-center justify-between px-4 md:px-8 py-5 max-w-7xl mx-auto">
         <div className="flex items-center gap-3">
-          <img src={logoTerminar} alt="Terminar logo" className="w-16 h-16 object-contain drop-shadow-xl" />
+          <img
+            src={logoTerminar}
+            alt="Terminar logo"
+            className="h-10 w-auto md:h-14 object-contain drop-shadow-xl flex-shrink-0"
+          />
         </div>
         <div className="hidden md:flex items-center gap-8">
           <a href="#customizer" className="text-gray-300 hover:text-white transition-colors">Customizer</a>
-          <a href="#giftcards" className="text-gray-300 hover:text-white transition-colors">Poukazky</a>
-          <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">Cennik</a>
-          <a href="#reservations" className="text-gray-300 hover:text-white transition-colors">Rezervacie</a>
+          <a href="#giftcards" className="text-gray-300 hover:text-white transition-colors">Pouk�ky</a>
+          <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">Cenn�k</a>
+          <a href="#reservations" className="text-gray-300 hover:text-white transition-colors">Rezerv�cie</a>
           <a
             href="#demo-tablet"
             className={`px-6 py-2 bg-gradient-to-r ${colors.primary.gradient} text-white rounded-lg font-semibold hover:shadow-lg transition-all`}
@@ -78,9 +82,9 @@ export default function ReservationSystemHero() {
         <div className="md:hidden relative z-40 max-w-7xl mx-auto px-4 pb-4">
           <div className="rounded-2xl bg-slate-900/80 border border-white/10 shadow-2xl p-4 space-y-3">
             <a href="#customizer" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Customizer</a>
-            <a href="#giftcards" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Poukazky</a>
-            <a href="#pricing" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Cennik</a>
-            <a href="#reservations" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Rezervacie</a>
+            <a href="#giftcards" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Pouk�ky</a>
+            <a href="#pricing" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Cenn�k</a>
+            <a href="#reservations" className="block text-gray-200 hover:text-white transition-colors" onClick={() => setIsMenuOpen(false)}>Rezerv�cie</a>
             <a
               href="#demo-tablet"
               className={`w-full py-3 bg-gradient-to-r ${colors.primary.gradient} text-white rounded-lg font-semibold hover:shadow-lg transition-all text-center`}
@@ -108,7 +112,7 @@ export default function ReservationSystemHero() {
               </div>
             </div>
 
-            <h1 className="text-6xl md:text-7xl font-bold text-white leading-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight">
               ÚŽASNE
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
@@ -458,6 +462,8 @@ export default function ReservationSystemHero() {
     </div>
   );
 }
+
+
 
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { ChevronRight, CheckCircle2, Star, Sparkles, Gift, Calendar } from 'lucide-react';
 
 // FARBY - Ľahko editovateľné
@@ -40,6 +40,12 @@ export default function SpecialOfferBanner() {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const targetDate = getNextNovemberEnd();
+  useEffect(() => {
+    const el = document.getElementById('email-offer');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,7 +83,7 @@ export default function SpecialOfferBanner() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden flex items-center justify-center p-8">
+    <div className="min-h-[70vh] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden flex items-center justify-center px-4 sm:px-6 md:px-10 py-8 md:py-12">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-20 w-96 h-96 rounded-full blur-3xl animate-pulse" 
@@ -90,7 +96,7 @@ export default function SpecialOfferBanner() {
 
       {/* Main Banner */}
       <div className="relative z-10 max-w-6xl w-full">
-        <div className="backdrop-blur-2xl rounded-[3rem] p-10 md:p-12 border-2 shadow-2xl overflow-hidden"
+        <div className="backdrop-blur-2xl rounded-[1.75rem] p-5 sm:p-7 md:p-8 border-2 shadow-2xl overflow-hidden"
           style={{ 
             backgroundColor: colors.background.cardHover,
             borderColor: colors.primary.main,
@@ -117,7 +123,7 @@ export default function SpecialOfferBanner() {
 
           <div className="relative text-center">
             {/* Top Badge */}
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full mb-8 border animate-pulse-slow"
+            <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-full mb-6 border animate-pulse-slow"
               style={{ 
                 backgroundColor: `${colors.primary.main}20`,
                 borderColor: `${colors.primary.main}50`,
@@ -131,48 +137,48 @@ export default function SpecialOfferBanner() {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
               2 mesiace za cenu 1
             </h1>
 
-            <p className="text-base md:text-lg text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed">
               Platí na poukážkový Customizer. Aktivujte do konca novembra 2024 a získate +1 mesiac zdarma.
             </p>
 
             {/* Features Grid */}
-            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
-              <div className="flex items-start gap-4 p-6 rounded-2xl border transition-all hover:scale-105 cursor-pointer group"
+            <div className="grid md:grid-cols-2 gap-4 sm:gap-5 max-w-3xl mx-auto mb-6 sm:mb-8">
+              <div className="flex items-start gap-3 p-4 sm:p-5 rounded-2xl border transition-all hover:scale-105 cursor-pointer group"
                 style={{ 
                   backgroundColor: `${colors.primary.main}15`,
                   borderColor: `${colors.primary.main}30`
                 }}>
-                <div className={`w-14 h-14 bg-gradient-to-br ${colors.primary.gradient} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg`}>
-                  <Gift className="w-7 h-7 text-white" />
+                <div className={`w-12 h-12 bg-gradient-to-br ${colors.primary.gradient} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg`}>
+                  <Gift className="w-6 h-6 text-white" />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-xl font-bold text-white mb-2">Darčekové poukážky</h3>
-                  <p className="text-sm text-gray-400">Vytvárajte a posielate digitálne darčekové karty s vlastným dizajnom</p>
+                  <h3 className="text-lg font-bold text-white mb-1">Darčekové poukážky</h3>
+                  <p className="text-xs text-gray-400">Vytvárajte a posielate digitálne darčekové karty s vlastným dizajnom</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-6 rounded-2xl border transition-all hover:scale-105 cursor-pointer group"
+              <div className="flex items-start gap-3 p-4 sm:p-5 rounded-2xl border transition-all hover:scale-105 cursor-pointer group"
                 style={{ 
                   backgroundColor: `${colors.accent.main}15`,
                   borderColor: `${colors.accent.main}30`
                 }}>
-                <div className={`w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg`}>
-                  <Calendar className="w-7 h-7 text-white" />
+                <div className={`w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg`}>
+                  <Calendar className="w-6 h-6 text-white" />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-xl font-bold text-white mb-2">Online rezervácie</h3>
-                  <p className="text-sm text-gray-400">Kompletný rezervačný systém s kalendárom a automatickými notifikáciami</p>
+                  <h3 className="text-lg font-bold text-white mb-1">Online rezervácie</h3>
+                  <p className="text-xs text-gray-400">Kompletný rezervačný systém s kalendárom a automatickými notifikáciami</p>
                 </div>
               </div>
             </div>
 
             {/* Email Form */}
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mb-8">
+              <form id="email-offer" onSubmit={handleSubmit} className="max-w-2xl mx-auto mb-8 sm:mb-10">
                 <div className="flex flex-col md:flex-row gap-4 p-2 rounded-2xl backdrop-blur-xl border"
                   style={{ 
                     backgroundColor: 'rgba(15, 23, 42, 0.8)',
@@ -234,21 +240,21 @@ export default function SpecialOfferBanner() {
             </div>
 
             {/* Urgency Timer */}
-            <div className="mt-12 inline-flex items-center gap-3 px-8 py-4 rounded-2xl border"
+            <div className="mt-8 inline-flex flex-col sm:flex-row items-center gap-2 px-3 py-2 sm:px-4 sm:py-3 rounded-2xl border text-center sm:text-left"
               style={{ 
                 backgroundColor: `${colors.secondary.main}20`,
                 borderColor: `${colors.secondary.main}40`
               }}>
-              <Clock className="w-6 h-6" style={{ color: colors.secondary.light }} />
+              <Clock className="w-5 h-5 mx-auto sm:mx-0" style={{ color: colors.secondary.light }} />
               <div className="text-left">
-                <div className="text-sm text-gray-400">Ponuka končí</div>
-                <div className="text-xl font-bold text-white">30. novembra {targetDate.getUTCFullYear()}</div>
+                <div className="text-xs text-gray-400">Ponuka končí</div>
+                <div className="text-lg font-bold text-white">30. novembra {targetDate.getUTCFullYear()}</div>
               </div>
             </div>
 
             {/* Trust Indicators */}
 {/* Countdown Section */}
-<div className="mt-12 pt-8 border-t" style={{ borderColor: `${colors.primary.main}30` }}>
+<div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t" style={{ borderColor: `${colors.primary.main}30` }}>
   <CountdownTimer targetDate={targetDate} colors={colors} />
 </div>
 
@@ -326,8 +332,8 @@ function CountdownTimer({ targetDate, colors }) {
 
   return (
     <div className="mt-12 flex flex-col items-center gap-6">
-      <div className="text-sm text-gray-400 uppercase tracking-wider">Ponuka končí o</div>
-      <div className="flex items-center gap-6 text-white">
+      <div className="text-xs text-gray-400 uppercase tracking-wider">Ponuka končí o</div>
+      <div className="flex items-center gap-0.5 text-white">
         {[
           { label: 'Dni', value: timeLeft.days },
           { label: 'Hodiny', value: timeLeft.hours },
@@ -343,7 +349,7 @@ function CountdownTimer({ targetDate, colors }) {
             }}
           >
             <span className="text-4xl font-bold">{unit.value.toString().padStart(2, '0')}</span>
-            <span className="text-sm text-gray-400 mt-1">{unit.label}</span>
+            <span className="text-xs text-gray-400 mt-1">{unit.label}</span>
           </div>
         ))}
       </div>
